@@ -144,5 +144,5 @@ load-module module-filter-heuristics
 load-module module-filter-apply
 
 ### Make some devices default
-#set-default-sink output
+set-default-sink alsa_output.usb-ZOOM_Corporation_U-44-00.analog-surround-40
 #set-default-source input
