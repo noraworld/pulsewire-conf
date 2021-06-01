@@ -64,7 +64,9 @@ load-module module-jackdbus-detect channels=2
 
 ### Automatically load driver modules for Bluetooth hardware
 .ifexists module-bluetooth-policy.so
-load-module module-bluetooth-policy
+# Automatically switch between HFP and A2DP with auto_switch={VALUE}
+# https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#auto_switch
+load-module module-bluetooth-policy auto_switch=2
 .endif
 
 .ifexists module-bluetooth-discover.so
