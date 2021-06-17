@@ -66,11 +66,20 @@ load-module module-jackdbus-detect channels=2
 .ifexists module-bluetooth-policy.so
 # Automatically switch between HFP and A2DP with auto_switch={VALUE}
 # https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#auto_switch
-load-module module-bluetooth-policy auto_switch=2
+
+# Pick up one
+load-module module-bluetooth-policy
+#load-module module-bluetooth-policy auto_switch=0
+#load-module module-bluetooth-policy auto_switch=1
+#load-module module-bluetooth-policy auto_switch=2
 .endif
 
 .ifexists module-bluetooth-discover.so
-load-module module-bluetooth-discover headset=ofono
+# Enable HFP or not
+
+# Pick up one (add "headset=ofono" to enable HFP)
+load-module module-bluetooth-discover
+#load-module module-bluetooth-discover headset=ofono
 .endif
 
 ### Load several protocols
