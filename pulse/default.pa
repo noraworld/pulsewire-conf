@@ -78,8 +78,8 @@ load-module module-bluetooth-policy auto_switch=2
 # Enable HFP or not
 
 # Pick up one (add "headset=ofono" to enable HFP)
-#load-module module-bluetooth-discover
-load-module module-bluetooth-discover headset=ofono
+load-module module-bluetooth-discover
+#load-module module-bluetooth-discover headset=ofono
 .endif
 
 ### Load several protocols
