@@ -10,3 +10,7 @@ systemctl --user enable pulseaudio
 sudo gpasswd -a $(whoami) pulse
 sudo gpasswd -a $(whoami) pulse-access
 ```
+
+# Known issues
+* Choppy sound
+* Sound vanishes even though a device makes the sound
