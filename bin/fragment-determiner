@@ -25,12 +25,20 @@ main() {
       use_existing_log=false
     else
       use_existing_log=true
+      echo
     fi
-
-    echo
   fi
 
   if ! [ -f "$LOG_PATH" ] || ! $use_existing_log; then
+    printf "INFO: This will halt PulseAudio. Are you sure you want to proceed? [Y/n]: "
+
+    exec < /dev/tty
+    read -r confirm
+
+    if [ "$confirm" = "n" ] || [ "$confirm" = "no" ] || [ "$confirm" = "N" ] || [ "$confirm" = "No" ] || [ "$confirm" = "NO" ]; then
+      exit 1
+    fi
+
     [ -d "$HOME/.pulse" ] || mkdir "$HOME/.pulse"
     echo autospawn = no >> "$CLIENT_CONF_PATH"
 
