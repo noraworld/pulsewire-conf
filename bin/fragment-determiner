@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Reference: https://forums.linuxmint.com/viewtopic.php?t=44862
+
 # Inside parse()
 # shellcheck disable=SC2004
 
