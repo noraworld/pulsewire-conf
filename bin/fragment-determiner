@@ -1,0 +1,133 @@
+#!/bin/sh
+
+set -eu
+
+SLEEP_INTERVAL=3
+CLIENT_CONF_PATH="$HOME"/.pulse/client.conf
+LOG_PATH="$HOME"/pulseverbose.log
+SCALE=10
+
+main() {
+  use_existing_log=false
+  if [ -f "$LOG_PATH" ]; then
+    printf "INFO: %s already exists. Use this? [Y/n]: " "$LOG_PATH"
+
+    exec < /dev/tty
+    read -r confirm
+
+    if [ "$confirm" = "n" ] || [ "$confirm" = "no" ] || [ "$confirm" = "N" ] || [ "$confirm" = "No" ] || [ "$confirm" = "NO" ]; then
+      use_existing_log=false
+    else
+      use_existing_log=true
+    fi
+
+    echo
+  fi
+
+  if ! [ -f "$LOG_PATH" ] || ! $use_existing_log; then
+    [ -d "$HOME/.pulse" ] || mkdir "$HOME/.pulse"
+    echo autospawn = no >> "$CLIENT_CONF_PATH"
+
+    if [ "$(tail -1 "$CLIENT_CONF_PATH" | grep -c "autospawn = no")" -ne 1 ]; then
+      echo "ERROR: autospawn not found"
+      exit 1
+    fi
+
+    if [ "$(pgrep pulseaudio)" != "" ]; then
+      killall pulseaudio
+    fi
+
+    if [ "$(systemctl --user is-active pulseaudio)" = "active" ]; then
+      systemctl --user stop pulseaudio
+      echo "INFO: PulseAudio daemon was alive. Killed it"
+    fi
+
+    if [ "$(pgrep pulseaudio)" != "" ]; then
+      echo "ERROR: PulseAudio process is still alive"
+      exit 1
+    fi
+
+    LANG=C pulseaudio -vvvv > "$LOG_PATH" 2>&1 &
+
+    echo "INFO: Wait $SLEEP_INTERVAL sec"
+    sleep "$SLEEP_INTERVAL"
+    echo
+
+    killall pulseaudio
+
+    rm "$CLIENT_CONF_PATH"
+
+    [ -f "$CLIENT_CONF_PATH" ] && echo "WARNING: client.conf still exists. But continue"
+  fi
+
+  validate_count
+
+  for i in $(seq 1 "$(sample_rates | wc -l)"); do
+    grep -B 1 "alsa.resolution_bits" "$LOG_PATH" |
+    grep -v -e "alsa.resolution_bits" -e "--" |
+    sed -n "$i"p |
+    sed -E -e 's/I: \[pulseaudio\] sink.c: Created //g' -e 's/I: \[pulseaudio\] source.c: Created //g'
+
+    calculated_result=$(
+      calculate \
+      "$(sample_rates | sed -n "$i"p)" \
+      "$(resolution_bits | sed -n "$i"p)" \
+      "$(buffer_sizes | sed -n "$i"p)" \
+      "$(fragment_sizes | sed -n "$i"p)" \
+    )
+    default_fragments=$(echo "$calculated_result" | sed -n 1p)
+    default_fragment_size_msec=$(echo "$calculated_result" | sed -n 2p)
+
+    echo "	default-fragments = $default_fragments"
+    echo "	default-fragment-size-msec = $default_fragment_size_msec"
+    echo
+  done
+
+  echo "Done! Choose one that you prefer to use"
+}
+
+calculate() {
+  sample_rate=$1    # e.g. 48000Hz
+  resolution_bit=$2 # e.g. 32-bit
+  buffer_size=$3    # e.g. 1536000
+  fragment_size=$4  # e.g. 768000
+
+  # 2 times: stereo
+  # 1000 times: sec -> msec
+  buffer_size_msec=$(echo "scale = $SCALE; $buffer_size / ($sample_rate * $resolution_bit * 2) * 1000" | bc | sed 's/\.[0-9]*//g')
+  fragment_size_msec=$(echo "scale = $SCALE; $fragment_size / ($sample_rate * $resolution_bit * 2) * 1000" | bc | sed 's/\.[0-9]*//g')
+  fragments=$(echo "scale = $SCALE; $buffer_size_msec / $fragment_size_msec" | bc | sed 's/\.[0-9]*//g')
+
+  echo "$fragments"          # default-fragments
+  echo "$fragment_size_msec" # default-fragment-size-msec
+}
+
+sample_rates() {
+  grep -B 1 "alsa.resolution_bits" "$LOG_PATH" | grep -o "[0-9]*Hz" | sed "s/Hz//g"
+}
+
+resolution_bits() {
+  grep -o "alsa.resolution_bits = \"[0-9]*\"" "$LOG_PATH" | awk '{ print $3 }' | tr -d '"'
+}
+
+buffer_sizes() {
+  grep -o "device.buffering.buffer_size = \"[0-9]*\"" "$LOG_PATH" | awk '{ print $3 }' | tr -d '"'
+}
+
+fragment_sizes() {
+  grep -o "device.buffering.fragment_size = \"[0-9]*\"" "$LOG_PATH" | awk '{ print $3 }' | tr -d '"'
+}
+
+# Validate that sample_rates, resolution_bits, buffer_sizes, and fragment_sizes return the same number of lines
+validate_count() {
+  count=$(sample_rates | wc -l)
+
+  if [ "$(resolution_bits | wc -l)" -ne "$count" ] ||
+  [ "$(buffer_sizes | wc -l)" -ne "$count" ] ||
+  [ "$(fragment_sizes | wc -l)" -ne "$count" ]; then
+     echo "ERROR: The number of lines didn't match"
+     exit 1
+  fi
+}
+
+main "$@"
