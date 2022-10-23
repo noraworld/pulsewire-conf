@@ -15,7 +15,7 @@ sudo gpasswd -a $(whoami) pulse-access
 
 
 
-# How to figure out the right `default-fragments` and `default-fragment-size-msec`
+## How to figure out the right `default-fragments` and `default-fragment-size-msec`
 You can use `bin/fragment-determiner`.
 
 ```shell
@@ -105,7 +105,7 @@ sink 1 "alsa_output.platform-bcm2835_audio.stereo-fallback" with sample spec s16
 
 
 
-# Known issues
+## Known issues
 Here is a list of known issues that I'm not sure how to deal with so far.
 
 * Choppy sound
