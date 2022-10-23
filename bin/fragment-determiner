@@ -4,7 +4,7 @@ set -eu
 
 SLEEP_INTERVAL=3
 CLIENT_CONF_PATH="$HOME"/.pulse/client.conf
-LOG_PATH="$HOME"/pulseverbose.log
+LOG_PATH="$HOME"/.pulseverbose.log
 SCALE=10
 
 main() {
