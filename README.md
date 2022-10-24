@@ -15,7 +15,7 @@ sudo gpasswd -a $(whoami) pulse-access
 
 
 
-## How to figure out the right `default-fragments` and `default-fragment-size-msec`
+## How to figure out the appropriate `default-fragments` and `default-fragment-size-msec`
 You can use `bin/fragment-determiner`.
 
 ```shell
