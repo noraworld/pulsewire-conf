@@ -110,3 +110,8 @@ Here is a list of known issues that I'm not sure how to deal with so far.
 
 * Choppy sound
 * Sound vanishes even though a device makes the sound
+
+
+
+# License
+All codes of this project are available under the MIT license. See the [LICENSE](/LICENSE) for more information.
