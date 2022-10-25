@@ -15,6 +15,17 @@ sudo gpasswd -a $(whoami) pulse-access
 
 
 
+## How to restart the PulseAudio process and daemon easily
+You can use `bin/pa`.
+
+```shell
+bin/pa restart
+```
+
+For details on the other commands, see `bin/pa --help`.
+
+
+
 ## How to figure out the appropriate `default-fragments` and `default-fragment-size-msec`
 You can use `bin/fragment-determiner`.
 
