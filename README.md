@@ -123,6 +123,8 @@ Here is a list of known issues that I'm not sure how to deal with so far.
 * Sound vanishes even though a device continues to make the sound
 * An iPhone can't recognize its microphone in some apps when it's connected to PulseAudio
 
+I would be grateful if you could tell me how to fix these issues if you are familiar with PulseAudio.
+
 
 
 ## License
