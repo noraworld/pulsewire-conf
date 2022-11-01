@@ -50,10 +50,10 @@ load-module module-augment-properties
 ### Automatically load driver modules depending on the hardware available
 .ifexists module-udev-detect.so
 # Enable timer-based scheduling
-#load-module module-udev-detect
+load-module module-udev-detect
 # Disable timer-based scheduling (This enables default-fragments and default-fragment-size-msec)
 #   https://wiki.archlinux.org/title/PulseAudio/Troubleshooting#Disabling_timer-based_scheduling
-load-module module-udev-detect tsched=0
+#load-module module-udev-detect tsched=0
 .else
 ### Use the static hardware detection module (for systems that lack udev support)
 load-module module-detect
