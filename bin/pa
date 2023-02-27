@@ -16,6 +16,9 @@ main() {
     "stop")
       stop
       ;;
+    "down")
+      down
+      ;;
     "restart")
       restart
       ;;
@@ -123,6 +126,45 @@ stopped() {
   fi
 }
 
+down() {
+  if ! "$(stopped)"; then
+    stop
+  fi
+
+  if "$(is_down)"; then
+    echo "PulseAudio has already been masked"
+    return 0
+  fi
+
+  if [ "$(systemctl --user is-enabled pulseaudio)" != "masked" ]; then
+    systemctl --user mask pulseaudio
+  fi
+
+  if [ "$(systemctl --user is-enabled pulseaudio.socket)" != "masked" ]; then
+    systemctl --user mask pulseaudio.socket
+  fi
+
+  if [ "$(systemctl --user is-enabled pulseaudio)" != "masked" ]; then
+    echo "ERROR: Failed to down: PulseAudio daemon is still enabled" >&2
+    exit 1
+  fi
+
+  if [ "$(systemctl --user is-enabled pulseaudio.socket)" != "masked" ]; then
+    echo "ERROR: Failed to down: PulseAudio socket is still enabled" >&2
+    exit 1
+  fi
+}
+
+is_down() {
+  if
+  [ "$(systemctl --user is-enabled pulseaudio)" = "masked" ] &&
+  [ "$(systemctl --user is-enabled pulseaudio.socket)" = "masked" ]; then
+    echo true
+  else
+    echo false
+  fi
+}
+
 restart() {
   stop
   start
@@ -152,6 +194,7 @@ parser_definition() {
   msg -- '	OPERATION'
   msg -- '		start	Start the PulseAudio daemon'
   msg -- '		stop	Stop the PulseAudio daemon'
+  msg -- '		down	Keep the PulseAudio daemon from starting automatically when the system boots'
   msg -- '		restart	Restart the PulseAudio daemon'
   msg -- '		status	Show the PulseAudio process and daemon status'
   msg
@@ -225,6 +268,7 @@ Arguments:
   OPERATION
     start	Start the PulseAudio daemon
     stop	Stop the PulseAudio daemon
+    down	Keep the PulseAudio daemon from starting automatically when the system boots
     restart	Restart the PulseAudio daemon
     status	Show the PulseAudio process and daemon status
 
