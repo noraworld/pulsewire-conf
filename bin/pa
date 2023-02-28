@@ -179,10 +179,10 @@ status() {
   fi
   echo
 
-  systemctl --user status pulseaudio
+  systemctl --user status pulseaudio --no-pager
   echo
 
-  systemctl --user status pulseaudio.socket
+  systemctl --user status pulseaudio.socket --no-pager
 }
 
 # gengetoptions embed --overwrite <FILE>
