@@ -27,7 +27,11 @@ systemctl --user --now enable pipewire{,-pulse}.{socket,service}
 
 ## Synopsis
 ### PulseAudio
-TBA
+* `~/.config/pulse/default.pa` (for local changes)
+* `/etc/pulse/default.pa` (for system-wide changes)
+* `/etc/pulse/system.pa` (for system-wide changes)
+
+[Ubuntu Manpage: default.pa - PulseAudio Sound Server Startup Script](https://manpages.ubuntu.com/manpages/bionic/man5/default.pa.5.html)
 
 ### PipeWire
 * `$XDG_CONFIG_HOME/pipewire/pipewire.conf` (for local changes)
