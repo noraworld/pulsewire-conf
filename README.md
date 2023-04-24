@@ -159,10 +159,11 @@ Here is a list of known issues that I'm not sure how to deal with so far. It wou
 ### Both PulseAudio & PipeWire
 * The sound gets occasionally choppy
 * Sound vanishes even though a device continues to make the sound
+* A Bluetooth connection gets disconnected unexpectedly, even when PulseAudio is being used
+    * PipeWire is less likely to cause this problem than PulseAudio, in my experience
 
 ### PulseAudio
 * An iPhone can't recognize its microphone in some apps when it's connected to PulseAudio
-* A Bluetooth connection gets disconnected unexpectedly when PulseAudio is being used
 
 ### PipeWire
 * It can't switch a profile to HSP/HFP
