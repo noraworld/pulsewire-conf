@@ -13,6 +13,14 @@ sudo gpasswd -a $(whoami) pulse
 sudo gpasswd -a $(whoami) pulse-access
 ```
 
+```shell
+cd pulse-conf
+ln -s $PWD/pipewire $HOME/.config
+systemctl --user --now disable  pulseaudio.{socket,service}
+systemctl --user mask pulseaudio
+systemctl --user --now enable pipewire{,-pulse}.{socket,service}
+```
+
 
 
 ## How to restart the PulseAudio process and daemon easily
