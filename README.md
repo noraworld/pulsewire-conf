@@ -167,6 +167,7 @@ Here is a list of known issues that I'm not sure how to deal with so far. It wou
 ### PipeWire
 * PipeWire can't switch a profile to HSP/HFP
 * The sound gets slightly off
+* It can't establish the connection on the client end, or the clients can't recognize it as the audio profile
 
 
 
