@@ -9,7 +9,9 @@ PulseAudio & PipeWire config files.
 cd pulse-conf
 sudo rm -r /etc/pulse
 sudo ln -s $PWD/pulse /etc/pulse # for system-wide changes (see Synopsis below if you want to change the path)
-systemctl --user enable pulseaudio
+systemctl --user unmask pulseaudio
+systemctl --user --now disable pipewire{,-pulse}.{socket,service}
+systemctl --user --now enable pulseaudio.service pulseaudio.socket
 sudo gpasswd -a $(whoami) pulse
 sudo gpasswd -a $(whoami) pulse-access
 ```
