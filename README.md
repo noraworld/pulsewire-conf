@@ -154,7 +154,7 @@ sink 1 "alsa_output.platform-bcm2835_audio.stereo-fallback" with sample spec s16
 
 
 ## Known issues
-Here is a list of known issues that I'm not sure how to deal with so far. It would be great if you could tell me how to fix these issues if you are familiar with PulseAudio.
+Here is a list of known issues that I'm not sure how to deal with so far. It would be great if you could tell me how to fix these issues if you are familiar with PulseAudio and PipeWire.
 
 ### Both PulseAudio & PipeWire
 * The sound gets occasionally choppy
