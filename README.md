@@ -1,5 +1,5 @@
 # pulse-conf
-PulseAudio config files.
+PulseAudio & PipeWire config files.
 
 
 
