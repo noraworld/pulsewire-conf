@@ -4,6 +4,7 @@ PulseAudio config files.
 
 
 ## Setup
+### PulseAudio
 ```shell
 cd pulse-conf
 sudo rm -r /etc/pulse
@@ -13,13 +14,27 @@ sudo gpasswd -a $(whoami) pulse
 sudo gpasswd -a $(whoami) pulse-access
 ```
 
+### PipeWire
 ```shell
 cd pulse-conf
-ln -s $PWD/pipewire $HOME/.config
+ln -s $PWD/pipewire $HOME/.config # for local changes
 systemctl --user --now disable  pulseaudio.{socket,service}
 systemctl --user mask pulseaudio
 systemctl --user --now enable pipewire{,-pulse}.{socket,service}
 ```
+
+
+
+## Synopsis
+### PulseAudio
+TBA
+
+### PipeWire
+* `$XDG_CONFIG_HOME/pipewire/pipewire.conf` (for local changes)
+* `/etc/pipewire/pipewire.conf` (for system-wide changes)
+* `/usr/share/pipewire/pipewire.conf` (default config path)
+
+[Ubuntu Manpage: pipewire.conf - The PipeWire server configuration file](https://manpages.ubuntu.com/manpages/impish/man5/pipewire.conf.5.html)
 
 
 
