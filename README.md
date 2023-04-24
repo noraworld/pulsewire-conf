@@ -23,7 +23,7 @@ sudo reboot
 ```shell
 cd pulsewire-conf
 ln -s $PWD/pipewire $HOME/.config # for local changes (see Synopsis below if you want to change the path)
-systemctl --user --now disable  pulseaudio.{socket,service}
+systemctl --user --now disable pulseaudio.{socket,service}
 systemctl --user mask pulseaudio
 systemctl --user --now enable pipewire{,-pulse}.{socket,service}
 sudo gpasswd -a $(whoami) pulse
