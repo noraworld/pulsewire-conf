@@ -165,7 +165,7 @@ Here is a list of known issues that I'm not sure how to deal with so far. It wou
 * A Bluetooth connection gets disconnected unexpectedly when PulseAudio is being used
 
 ### PipeWire
-* PipeWire can't switch a profile to HSP/HFP
+* It can't switch a profile to HSP/HFP
 * The sound gets slightly off
 * It can't establish the connection on the client end, or the clients can't recognize it as the audio profile
 
