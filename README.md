@@ -8,7 +8,7 @@ PulseAudio & PipeWire config files.
 ```shell
 cd pulse-conf
 sudo rm -r /etc/pulse
-sudo ln -s $PWD/pulse /etc/pulse
+sudo ln -s $PWD/pulse /etc/pulse # for system-wide changes (see Synopsis below if you want to change the path)
 systemctl --user enable pulseaudio
 sudo gpasswd -a $(whoami) pulse
 sudo gpasswd -a $(whoami) pulse-access
@@ -26,6 +26,8 @@ systemctl --user --now enable pipewire{,-pulse}.{socket,service}
 
 
 ## Synopsis
+You can change the paths of configuration files to link with a `ln` command depending on whether they're run locally or system-wide.
+
 ### PulseAudio
 * `~/.config/pulse/default.pa` (for local changes)
 * `/etc/pulse/default.pa` (for system-wide changes)
