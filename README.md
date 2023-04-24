@@ -14,6 +14,7 @@ systemctl --user --now disable pipewire{,-pulse}.{socket,service}
 systemctl --user --now enable pulseaudio.service pulseaudio.socket
 sudo gpasswd -a $(whoami) pulse
 sudo gpasswd -a $(whoami) pulse-access
+sudo reboot
 ```
 
 ### PipeWire
@@ -25,6 +26,7 @@ systemctl --user mask pulseaudio
 systemctl --user --now enable pipewire{,-pulse}.{socket,service}
 sudo gpasswd -a $(whoami) pulse
 sudo gpasswd -a $(whoami) pulse-access
+sudo reboot
 ```
 
 
