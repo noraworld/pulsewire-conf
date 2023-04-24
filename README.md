@@ -154,14 +154,16 @@ sink 1 "alsa_output.platform-bcm2835_audio.stereo-fallback" with sample spec s16
 
 
 ## Known issues
-Here is a list of known issues that I'm not sure how to deal with so far.
+Here is a list of known issues that I'm not sure how to deal with so far. It would be great if you could tell me how to fix these issues if you are familiar with PulseAudio.
 
+### PulseAudio
 * The sound gets occasionally choppy
 * Sound vanishes even though a device continues to make the sound
 * An iPhone can't recognize its microphone in some apps when it's connected to PulseAudio
 * A Bluetooth connection gets disconnected unexpectedly when PulseAudio is being used
 
-I would be grateful if you could tell me how to fix these issues if you are familiar with PulseAudio.
+### PipeWire
+TBA
 
 
 
