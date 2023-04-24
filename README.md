@@ -167,5 +167,10 @@ TBA
 
 
 
+## Should I choose PulseAudio or PipeWire?
+From my perspective, I feel like PipeWire is more stable than PulseAudio. I recommend PipeWire if you don't have a specific reason, but it's also recommended to check out the [Known issues](#known-issues) above before you make a decision.
+
+
+
 ## License
 All codes of this project are available under the MIT license. See the [LICENSE](/LICENSE) for more information.
