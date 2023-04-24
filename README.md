@@ -4,6 +4,8 @@ PulseAudio & PipeWire config files.
 
 
 ## Setup
+Note that only one of PulseAudio and PipeWire can be used at the same time.
+
 ### PulseAudio
 ```shell
 cd pulsewire-conf
