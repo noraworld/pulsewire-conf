@@ -1,4 +1,4 @@
-# pulse-conf
+# pulsewire-conf
 PulseAudio & PipeWire config files.
 
 
@@ -6,7 +6,7 @@ PulseAudio & PipeWire config files.
 ## Setup
 ### PulseAudio
 ```shell
-cd pulse-conf
+cd pulsewire-conf
 sudo rm -r /etc/pulse
 sudo ln -s $PWD/pulse /etc/pulse # for system-wide changes (see Synopsis below if you want to change the path)
 systemctl --user unmask pulseaudio
@@ -19,7 +19,7 @@ sudo reboot
 
 ### PipeWire
 ```shell
-cd pulse-conf
+cd pulsewire-conf
 ln -s $PWD/pipewire $HOME/.config # for local changes (see Synopsis below if you want to change the path)
 systemctl --user --now disable  pulseaudio.{socket,service}
 systemctl --user mask pulseaudio
