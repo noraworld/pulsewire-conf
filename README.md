@@ -9,7 +9,7 @@ Do you want to know the differences between PulseAudio and PipeWire? Take a look
 Note that only one of PulseAudio or PipeWire can be used at the same time.
 
 ### Before the detailed setup
-oFono will not be used for this configuration. So you need to disable it first.
+oFono will not be used for this configuration. So you need to disable it first if you have it installed on your computer.
 
 ```shell
 sudo systemctl disable --now ofono
