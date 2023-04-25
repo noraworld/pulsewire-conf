@@ -1,6 +1,8 @@
 # pulsewire-conf
 PulseAudio & PipeWire config files.
 
+Do you want to know the differences between PulseAudio and PipeWire? Take a look at the [Known issues](#known-issues) and "[Should I choose PulseAudio or PipeWire?](#should-i-choose-pulseaudio-or-pipewire)" sections below.
+
 
 
 ## Setup
