@@ -6,6 +6,16 @@ PulseAudio & PipeWire config files.
 ## Setup
 Note that only one of PulseAudio or PipeWire can be used at the same time.
 
+### Before the detailed setup
+oFono will not be used for this configuration. So you need to disable it first.
+
+```shell
+sudo systemctl disable --now ofono
+sudo systemctl mask ofono
+```
+
+Setup either PulseAudio or PipeWire according to the instructions below.
+
 ### PulseAudio
 ```shell
 cd pulsewire-conf
@@ -14,9 +24,6 @@ sudo ln -s $PWD/pulse /etc/pulse # for system-wide changes (see Synopsis below i
 systemctl --user unmask pulseaudio
 systemctl --user --now disable pipewire{,-pulse}.{socket,service}
 systemctl --user --now enable pulseaudio.service pulseaudio.socket
-sudo gpasswd -a $(whoami) pulse
-sudo gpasswd -a $(whoami) pulse-access
-sudo reboot
 ```
 
 ### PipeWire
@@ -26,6 +33,10 @@ ln -s $PWD/pipewire $HOME/.config # for local changes (see Synopsis below if you
 systemctl --user --now disable pulseaudio.{socket,service}
 systemctl --user mask pulseaudio
 systemctl --user --now enable pipewire{,-pulse}.{socket,service}
+```
+
+### After the detailed setup
+```shell
 sudo gpasswd -a $(whoami) pulse
 sudo gpasswd -a $(whoami) pulse-access
 sudo reboot
