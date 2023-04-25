@@ -14,7 +14,7 @@ sudo systemctl disable --now ofono
 sudo systemctl mask ofono
 ```
 
-Setup either PulseAudio or PipeWire according to the instructions below.
+Setup either [PulseAudio](#pulseaudio) or [PipeWire](#pipewire) according to the instructions below. You don't have to do both.
 
 ### PulseAudio
 ```shell
