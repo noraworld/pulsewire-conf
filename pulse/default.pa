@@ -159,10 +159,16 @@ load-module module-filter-heuristics
 load-module module-filter-apply
 
 ### Make some devices default
+#
 #### Zoom U-44 Handy Audio Interface
 ##### https://zoomcorp.com/en/us/audio-interface/audio-interfaces/u-44/
-# set-default-sink alsa_output.usb-ZOOM_Corporation_U-44-00.analog-surround-40
+# set-default-sink   alsa_output.usb-ZOOM_Corporation_U-44-00.analog-surround-40
 # set-default-source alsa_input.usb-ZOOM_Corporation_U-44-00.multichannel-input
+#
+#### Cubilux USB A to S/PDIF Optical Audio Converter Adapter
+##### https://www.amazon.co.jp/gp/product/B0B2DBGKL3
+# set-default-sink   alsa_output.usb-Generic_USB_SPDIF_Adapter_202110200032-00.analog-stereo
+# set-default-source alsa_output.usb-Generic_USB_SPDIF_Adapter_202110200032-00.analog-stereo.monitor
 
 ### Allow including a default.pa.d directory, which if present, can be used
 ### for additional configuration snippets.
