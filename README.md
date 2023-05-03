@@ -46,20 +46,19 @@ sudo reboot
 
 
 
-## Synopsis
+## Configuration directories
 You can change the paths of configuration files to link with a `ln` command depending on whether they're run locally or system-wide.
 
 ### PulseAudio
-* `~/.config/pulse/default.pa` (for local changes)
-* `/etc/pulse/default.pa` (for system-wide changes)
-* `/etc/pulse/system.pa` (for system-wide changes)
+* `$HOME/.config/pulse/` (for local changes)
+* `/etc/pulse/` (for system-wide changes)
 
 [Ubuntu Manpage: default.pa - PulseAudio Sound Server Startup Script](https://manpages.ubuntu.com/manpages/bionic/man5/default.pa.5.html)
 
 ### PipeWire
-* `$XDG_CONFIG_HOME/pipewire/pipewire.conf` (for local changes)
-* `/etc/pipewire/pipewire.conf` (for system-wide changes)
-* `/usr/share/pipewire/pipewire.conf` (default config path)
+* `$HOME/.config/pipewire/` (for local changes)
+* `/etc/pipewire/` (for system-wide changes)
+* `/usr/share/pipewire/` (default config path)
 
 [Ubuntu Manpage: pipewire.conf - The PipeWire server configuration file](https://manpages.ubuntu.com/manpages/impish/man5/pipewire.conf.5.html)
 
