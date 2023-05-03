@@ -22,7 +22,7 @@ Setup either [PulseAudio](#pulseaudio) or [PipeWire](#pipewire) according to the
 ```shell
 cd pulsewire-conf
 sudo rm -r /etc/pulse
-sudo ln -s $PWD/pulse /etc/pulse # for system-wide changes (see Synopsis below if you want to change the path)
+sudo ln -s $PWD/pulse /etc/pulse
 systemctl --user unmask pulseaudio
 systemctl --user --now disable pipewire{,-pulse}.{socket,service}
 systemctl --user --now enable pulseaudio.service pulseaudio.socket
@@ -31,8 +31,8 @@ systemctl --user --now enable pulseaudio.service pulseaudio.socket
 ### PipeWire
 ```shell
 cd pulsewire-conf
-ln -s $PWD/pipewire $HOME/.config # for local changes (see Synopsis below if you want to change the path)
-ln -s $PWD/wireplumber $HOME/.config # for local changes
+ln -s $PWD/pipewire $HOME/.config
+ln -s $PWD/wireplumber $HOME/.config
 systemctl --user --now disable pulseaudio.{socket,service}
 systemctl --user mask pulseaudio
 systemctl --user --now enable pipewire{,-pulse}.{socket,service}
@@ -52,7 +52,7 @@ You can change the paths of configuration files to link with a `ln` command depe
 
 ### PulseAudio
 * `$HOME/.config/pulse/` (local configuration)
-* `/etc/pulse/` (system-wide configuration)
+* `/etc/pulse/` (system-wide & default configuration)
 
 [Ubuntu Manpage: default.pa - PulseAudio Sound Server Startup Script](https://manpages.ubuntu.com/manpages/bionic/man5/default.pa.5.html)
 
