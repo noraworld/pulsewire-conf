@@ -32,6 +32,7 @@ systemctl --user --now enable pulseaudio.service pulseaudio.socket
 ```shell
 cd pulsewire-conf
 ln -s $PWD/pipewire $HOME/.config # for local changes (see Synopsis below if you want to change the path)
+ln -s $PWD/wireplumber $HOME/.config # for local changes
 systemctl --user --now disable pulseaudio.{socket,service}
 systemctl --user mask pulseaudio
 systemctl --user --now enable pipewire{,-pulse}.{socket,service}
