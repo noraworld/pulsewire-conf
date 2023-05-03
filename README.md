@@ -1,5 +1,5 @@
 # pulsewire-conf
-PulseAudio & PipeWire config files.
+PulseAudio & PipeWire (WirePlumber) config files.
 
 Do you want to know the differences between PulseAudio and PipeWire? Take a look at the [Known issues](#known-issues) and "[Should I choose PulseAudio or PipeWire?](#should-i-choose-pulseaudio-or-pipewire)" sections below.
 
@@ -51,17 +51,24 @@ sudo reboot
 You can change the paths of configuration files to link with a `ln` command depending on whether they're run locally or system-wide.
 
 ### PulseAudio
-* `$HOME/.config/pulse/` (for local changes)
-* `/etc/pulse/` (for system-wide changes)
+* `$HOME/.config/pulse/` (local configuration)
+* `/etc/pulse/` (system-wide configuration)
 
 [Ubuntu Manpage: default.pa - PulseAudio Sound Server Startup Script](https://manpages.ubuntu.com/manpages/bionic/man5/default.pa.5.html)
 
 ### PipeWire
-* `$HOME/.config/pipewire/` (for local changes)
-* `/etc/pipewire/` (for system-wide changes)
-* `/usr/share/pipewire/` (default config path)
+* `$HOME/.config/pipewire/` (local configuration)
+* `/etc/pipewire/` (system-wide configuration)
+* `/usr/share/pipewire/` (default configuration)
 
 [Ubuntu Manpage: pipewire.conf - The PipeWire server configuration file](https://manpages.ubuntu.com/manpages/impish/man5/pipewire.conf.5.html)
+
+### WirePlumber
+* `$HOME/.config/wireplumber/` (local configuration)
+* `/etc/wireplumber/` (system-wide configuration)
+* `/usr/share/wireplumber/` (default configuration)
+
+[WirePlumber - ArchWiki](https://wiki.archlinux.org/title/WirePlumber#:~:text=WirePlumber%27s%20configuration%20is,(stock%20configuration).)
 
 
 
