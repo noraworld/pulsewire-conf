@@ -38,6 +38,11 @@ systemctl --user mask pulseaudio
 systemctl --user --now enable pipewire{,-pulse}.{socket,service}
 ```
 
+### Shairport Sync
+```shell
+sudo ln -s $PWD/shairport/shairport-sync.conf /etc
+```
+
 ### After the detailed setup
 ```shell
 sudo gpasswd -a $(whoami) pulse
