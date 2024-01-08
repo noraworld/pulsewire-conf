@@ -23,8 +23,8 @@ Setup either [PulseAudio](#pulseaudio) or [PipeWire](#pipewire) according to the
 cd pulsewire-conf
 sudo rm -r /etc/pulse
 sudo ln -s $PWD/pulse /etc/pulse
-systemctl --user --now disable pipewire{,-pulse}.{socket,service}
-systemctl --user mask pipewire{,-pulse}.{socket,service}
+systemctl --user --now disable pipewire{,-pulse}.{socket,service} wireplumber
+systemctl --user mask pipewire{,-pulse}.{socket,service} wireplumber
 systemctl --user unmask pulseaudio.{socket,service}
 systemctl --user --now enable pulseaudio.service pulseaudio.socket
 ```
@@ -36,8 +36,8 @@ ln -s $PWD/pipewire $HOME/.config
 ln -s $PWD/wireplumber $HOME/.config
 systemctl --user --now disable pulseaudio.{socket,service}
 systemctl --user mask pulseaudio.{socket,service}
-systemctl --user unmask pipewire{,-pulse}.{socket,service}
-systemctl --user --now enable pipewire{,-pulse}.{socket,service}
+systemctl --user unmask pipewire{,-pulse}.{socket,service} wireplumber
+systemctl --user --now enable pipewire{,-pulse}.{socket,service} wireplumber
 ```
 
 ### Shairport Sync
