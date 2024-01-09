@@ -182,6 +182,31 @@ sink 1 "alsa_output.platform-bcm2835_audio.stereo-fallback" with sample spec s16
 
 
 
+## How to disable all daemons temporarily
+In order to prevent all daemons from starting automatically, type the following commands.
+
+```shell
+systemctl --user --now disable pulseaudio.{socket,service} pipewire{,-pulse}.{socket,service} wireplumber
+systemctl --user mask pulseaudio.{socket,service} pipewire{,-pulse}.{socket,service} wireplumber
+
+# You might want to stop these daemons as well when you are using them.
+sudo systemctl --now disable bluetooth shairport-sync nqptp
+sudo systemctl mask bluetooth shairport-sync nqptp
+```
+
+If you want to revert these changes, perform the opposite operations like this.
+
+```shell
+systemctl --user --now enable pulseaudio.{socket,service} pipewire{,-pulse}.{socket,service} wireplumber
+systemctl --user unmask pulseaudio.{socket,service} pipewire{,-pulse}.{socket,service} wireplumber
+
+# Don't forget to execute the following commands when you stop them.
+sudo systemctl --now enable bluetooth shairport-sync nqptp
+sudo systemctl unmask bluetooth shairport-sync nqptp
+```
+
+
+
 ## Known issues
 Here is a list of known issues that I'm not sure how to deal with so far. It would be great if you could tell me how to fix these issues if you are familiar with PulseAudio and PipeWire.
 
