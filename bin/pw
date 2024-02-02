@@ -1,0 +1,12 @@
+#!/bin/sh
+
+main() {
+  sudo systemctl restart bluetooth
+  touch "/home/ubuntu/.tmp/marlin_autoconnect"
+  systemctl --user restart \
+    pipewire.socket        \
+    pipewire.service       \
+    pipewire-pulse.socket  \
+    pipewire-pulse.service \
+    wireplumber.service
+}
